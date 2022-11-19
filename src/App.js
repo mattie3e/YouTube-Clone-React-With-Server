@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import HeaderComponent from './components/HeaderComponent'
+import WideNavComponent from './components/WideNavComponent'
+import MiniNavComponent from './components/MiniNavComponent'
+import MainComponent from './components/MainComponent'
+import useSetMain from './hooks/useSetMain'
+
+const App = () => {
+    const [ isOpen, setIsOpen ] = React.useState()
+    const [ selectedNav, setSelectedNav] = useSetMain() //default='홈'
+
+
+    return (
+        <React.Fragment>
+            <HeaderComponent isOpen={isOpen} setIsOpen={setIsOpen}/>
+            <WideNavComponent isOpen={isOpen} selectedNav={selectedNav} setSelectedNav={setSelectedNav}/>
+            <MiniNavComponent selectedNav={selectedNav} setSelectedNav={setSelectedNav}/>
+            <MainComponent isOpen={isOpen} selectedNav={selectedNav} setSelectedNav={setSelectedNav}/> 
+        </React.Fragment>
+    )
+
 }
 
-export default App;
+export default App
