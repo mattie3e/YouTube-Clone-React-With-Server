@@ -13,7 +13,7 @@ const ContentInfoComponent = (props) => {
                     check_icon ? 
                     <div className="channel_name_box">
                         <h2 className="channel_name">{channel_name}</h2>
-                        <img src={require('../img/check.svg').default} className="channel_check_img"/>
+                        <img src={require('../../../img/check.svg').default} className="channel_check_img"/>
                     </div> :
                     <div className="channel_name_box">
                         <h2 className="channel_name">{channel_name}</h2>

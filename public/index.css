@@ -511,6 +511,11 @@ main{
     display: flex;
 }
 
+.channel_name_box::after{
+    content: '\22ee';
+    display: flex;
+}
+
 .channel_name{
     font-size: 12px;
     font-weight: 400;

@@ -1,11 +1,11 @@
 import React from 'react'
 
 const TempComponent = (props) => {
-    const { state } = props
+    const { text } = props
     
     return (
         <div className="temp">
-            {state}
+            {text}
         </div>
     )
 }

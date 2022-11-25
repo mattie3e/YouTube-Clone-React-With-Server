@@ -1,22 +1,18 @@
 import React from 'react'
 
-import HeaderComponent from './components/HeaderComponent'
-import WideNavComponent from './components/WideNavComponent'
-import MiniNavComponent from './components/MiniNavComponent'
-import MainComponent from './components/MainComponent'
-import useSetMain from './hooks/useSetMain'
+import HeaderComponent from './components/Header/HeaderComponent'
+import WideNavComponent from './components/Nav/WideNavComponent'
+import MiniNavComponent from './components/Nav/MiniNavComponent'
+import MainComponent from './components/Main/MainComponent'
 
 const App = () => {
-    const [ isOpen, setIsOpen ] = React.useState()
-    const [ selectedNav, setSelectedNav] = useSetMain() //default='홈'
-
-
+    //묶어주기
     return (
         <React.Fragment>
-            <HeaderComponent isOpen={isOpen} setIsOpen={setIsOpen}/>
-            <WideNavComponent isOpen={isOpen} selectedNav={selectedNav} setSelectedNav={setSelectedNav}/>
-            <MiniNavComponent selectedNav={selectedNav} setSelectedNav={setSelectedNav}/>
-            <MainComponent isOpen={isOpen} selectedNav={selectedNav} setSelectedNav={setSelectedNav}/> 
+            <HeaderComponent/>
+            <WideNavComponent/>
+            <MiniNavComponent/>
+            <MainComponent/> 
         </React.Fragment>
     )
 

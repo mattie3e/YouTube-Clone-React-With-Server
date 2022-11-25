@@ -6,11 +6,10 @@ import UserComponent from './UserComponent'
 
 
 const HeaderComponent = (props) => {
-    const { isOpen, setIsOpen } = props
 
     return (
         <header>
-            <MenuAndLogoComponent isOpen={isOpen} setIsOpen={setIsOpen}/>
+            <MenuAndLogoComponent/>
             <SearchComponent/>
             <UserComponent/>
         </header>

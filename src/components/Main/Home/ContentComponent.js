@@ -2,6 +2,8 @@ import React from 'react'
 import VideoElementComponent from './VideoElementComponent'
 import ContentInfoComponent from './ContentInfoComponent'
 
+import { useSelector } from 'react-redux'
+
 
 const ContentComponent = () => {
     // 백엔드에서 불러올 데이터 -> state에 넣어주기
@@ -20,10 +22,12 @@ const ContentComponent = () => {
     {"title":"뉴욕에 여행을 간다면", "channel_name":"침착맨", "channel_img":"https://yt3.ggpht.com/ytc/AKedOLTi6w4E6985-QdVBbovBSsnCeTETyj0WomjM5IY8Q=s68-c-k-c0x00ffffff-no-rj", "duration":"37:16", "view_rate":"58만회", "date_info":"3일 전", "thumbnail_img":"https://i.ytimg.com/vi/oiFMy3eW9qE/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB_3Fjf7NSViZDv81nfvOYWgZbedQ", "check_icon":true}
 ]
 
+    const resizeState = useSelector(state => state.thumbnailClick)
+
     return (
-        <div className="contents_box">
+        <div className={resizeState ? "contents_box resize" : "contents_box"}>
             {
-                contents.map((element, index) =>{
+                contents.map((element) =>{
                     // state에 있는 값을 가져와서 처리해주는 식으로?????
                     return(
                     <div className="content">

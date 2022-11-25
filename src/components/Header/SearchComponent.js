@@ -12,21 +12,22 @@ const SearchComponent = () => {
         <div className='search_box'>
             <div className=
             {
-             hiddenIcon ? 'search_inner_box' : 'extend_inner_box'
+                // 적는 방식 고민
+                hiddenIcon ? 'search_inner_box' : 'extend_inner_box'
             }
             >
-                <img className={hiddenIcon ? 'hidden_search_img' : 'visible_search_img'} src={require('../img/search.svg').default}/>
+                <img className={hiddenIcon ? 'hidden_search_img' : 'visible_search_img'} src={require('../../img/search.svg').default}/>
                 <input onFocus={inputFocusEvent} onBlur={inputFocusEvent} placeholder='검색'/>
                 <button className='keyboard_btn'>
-                    <img src={require('../img/keyboard.png')}/>
+                    <img src={require('../../img/keyboard.png')}/>
                 </button>
             </div>
             
             <button className='search_btn'>
-                <img src={require('../img/search.svg').default}/>
+                <img src={require('../../img/search.svg').default}/>
             </button>
             <button className='mic_btn'>
-                <img src={require('../img/mic.png')}/>
+                <img src={require('../../img/mic.png')}/>
             </button>
         </div>
     )
