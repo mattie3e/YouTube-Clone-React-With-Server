@@ -7,7 +7,7 @@ const WideNavItemComponent = (props) => {
     const { src, name } = data 
 
     const dispatch = useDispatch()
-
+    
     const selectedNav = useSelector(state => state.selectNav)
 
     const clickNavEvent = (e) => {

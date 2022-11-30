@@ -425,6 +425,7 @@ main{
 }
 
 .content{
+    position: relative;
     display: flex;
     flex-flow: column wrap;
     flex: 1 1 20%;
@@ -435,6 +436,53 @@ main{
     margin-bottom: 40px;
     min-width: 240px;
     max-width: 360px;
+    cursor: pointer;
+}
+
+.resize{
+    display: flex;
+    flex-direction: column;
+    z-index: 2022;
+    position: absolute;
+    top: -14px;
+    width: 360px;
+    height: fit-content;
+    background-color: #202020;
+    border-radius: 10px;
+}
+
+.resize .video_thumbnail{
+    border-radius: 10px 10px 0 0;
+}
+
+.resize .content_info_box{
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.option_box{
+    display: flex;
+    flex-direction: column;
+    padding: 10px 10px 0 10px;
+    box-sizing: border-box;
+}
+
+.option_box div{
+    display: flex;
+    justify-content: center;
+    background-color: #373737;
+    width: 100%;
+    padding: 6px 10px;
+    border-radius: 30px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.option_box img{
+    filter: brightness(0) invert(1);
+    width: 24px;
+    height: fit-content;
+    margin-right: 6px;
 }
 
 .video_duration{
@@ -473,6 +521,9 @@ main{
     flex-flow: row nowrap;
     flex: 1 0 36px;
     width: 100%;
+    position: relative;
+    padding-right: 24px;
+    box-sizing: border-box;
 }
 
 .video_thumbnail{
@@ -499,7 +550,7 @@ main{
     width: 100%;
     font-weight: 600;
     font-size: 14px;
-    margin: 14px 0 10px 0;
+    margin: 12px 0 10px 0;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -507,12 +558,18 @@ main{
     -webkit-box-orient: vertical;
 }
 
-.channel_name_box{
-    display: flex;
+.content:hover .content_info_box::after{
+    content: '\22ee';
+    position: absolute;
+    right: 0px;
+    top: 4px;
+    font-size: 24px;
+    text-align: center;
+    width: 24px;
+    height: 24px;
 }
 
-.channel_name_box::after{
-    content: '\22ee';
+.channel_name_box{
     display: flex;
 }
 
@@ -551,6 +608,13 @@ main{
     margin: 0px 4px;
 }
 
+
+@media screen and (min-width: 1800px){
+    .resize{
+        width: 440px;
+    }
+}
+
 @media screen and (min-width: 1313px){
     main.open{
         padding-left: 240px;
@@ -564,10 +628,6 @@ main{
         display: block;
     }
 
-    .wide_nav{
-        display: block;
-    }
-
     .wide_nav.close{
         display: none;
     }
@@ -578,7 +638,7 @@ main{
 }
 
 @media screen and (max-width: 1312px){
-    main{
+    main.close{
         padding-left: 64px;
     }
 
@@ -588,10 +648,6 @@ main{
 
     .mini_nav{
         display: block;
-    }
-
-    .wide_nav{
-        display: none;
     }
 
     .wide_nav.close{
@@ -608,7 +664,7 @@ main{
 }
 
 @media (max-width: 800px){
-    main{
+    main.close{
         padding-left: 0px;
     }
 

@@ -11,10 +11,5 @@ const changeNav = (nav) => {
     }
 }
 
-const changeThumbnail = () => {
-    return {
-        type: "THUMBNAIL_CLICK"
-    }
-}
 
-export {changeIsOpen, changeNav }
+export { changeIsOpen, changeNav }
