@@ -308,11 +308,10 @@ header{
 
 .wide_nav{
     display: block;
-    position: relative;
+    position: fixed;
     top: 56px;
     visibility: visible;
     box-sizing: border-box;
-    position: fixed;
     background-color: var(--youtube-bg-color);
     width: 240px; 
     height: calc(100vh - 56px);
@@ -685,4 +684,4 @@ main{
     .search_box{
         display: none;
     }
-}
+} 

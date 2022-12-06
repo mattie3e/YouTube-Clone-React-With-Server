@@ -2,14 +2,22 @@ import React from 'react'
 import { useDispatch } from 'react-redux' // state 가져오는 명령어
 import { changeIsOpen } from "../../redux/action"
 
+import { useRecoilState } from 'recoil'
+import { isOpenState } from '../../recoil/youtubeState'
 
 const MenuAndLogoComponent = () => {
     const logoClickEvent = () =>{
         document.location.reload()
     }
     
-    const dispatch = useDispatch()
-    const menuClickEvent = () => dispatch(changeIsOpen())
+    //const dispatch = useDispatch()
+    //const menuClickEvent = () => dispatch(changeIsOpen())
+
+    const [ isOpen, setIsOpen ] = useRecoilState(isOpenState)
+    const menuClickEvent = () => {
+        isOpen ? setIsOpen(false) : setIsOpen(true)
+        console.log(isOpen)
+    } 
 
 
     return(
