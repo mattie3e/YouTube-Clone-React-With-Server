@@ -10,12 +10,15 @@ import { isOpenState, selectNavState } from '../../recoil/youtubeState'
 import styled from 'styled-components'
 
 const Main = styled.main`
-    ${(props) => {
-        const bg_color  = props.bg_color ? props.bg_color : '#0F0F0F'
-        return `
-            background_color : ${bg_color};
-        `
-    }}
+    @media screen and (min-width: 1313px){
+        ${(props) => {
+            const padding = props.padding ? props.padding : '56px 0 0 240px'
+
+            return `
+            padding: ${padding}
+            `
+        }}
+    }
 `
 
 const MainComponent = () => {

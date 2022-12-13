@@ -4,15 +4,30 @@ import MenuAndLogoComponent from './MenuAndLogoComponent'
 import SearchComponent from './SearchComponent'
 import UserComponent from './UserComponent'
 
+import styled from 'styled-components'
+
+const HeaderStyle = styled.header`
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    width: 100%;
+    height: 56px;
+    background-color: #0F0F0F;
+    position: fixed;
+    z-index: 1;
+`
+
 
 const HeaderComponent = (props) => {
 
     return (
-        <header>
+        <HeaderStyle>
             <MenuAndLogoComponent/>
             <SearchComponent/>
             <UserComponent/>
-        </header>
+        </HeaderStyle>
     )
 }
 

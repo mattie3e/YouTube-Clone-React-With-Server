@@ -1,12 +1,17 @@
 import React from 'react'
+import styled from 'styled-components'
+
+const Box = styled.div`
+    color: white;   
+`
 
 const TempComponent = (props) => {
     const { text } = props
     
     return (
-        <div className="temp">
+        <Box>
             {text}
-        </div>
+        </Box>
     )
 }
 

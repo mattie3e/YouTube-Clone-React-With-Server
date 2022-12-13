@@ -8,6 +8,26 @@ import MainComponent from './components/Main/MainComponent'
 import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
+    *::-webkit-scrollbar {
+        width: 16px;
+    }
+
+    *::-webkit-scrollbar-track {
+        border-radius: 8px;
+    }
+
+    *::-webkit-scrollbar-thumb {
+        height: 56px;
+        border-radius: 8px;
+        border: 4px solid transparent;
+        background-clip: content-box;
+        background-color: transparent;
+    }
+
+    *::-webkit-scrollbar-thumb:hover {
+        background-color: #717171;
+    }
+
     body{
         padding: 0;
         margin: 0;
