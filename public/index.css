@@ -556,6 +556,7 @@ main{
     -webkit-box-orient: vertical;
 }
 
+/* 여기는 css 안 쓰고 구현을 어떻게 ?????????? */
 .content:hover .content_info_box::after{
     content: '\22ee';
     position: absolute;

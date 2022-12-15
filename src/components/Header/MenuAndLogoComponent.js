@@ -65,7 +65,6 @@ const MenuAndLogoComponent = () => {
     const [ isOpen, setIsOpen ] = useRecoilState(isOpenState)
     const menuClickEvent = () => {
         isOpen ? setIsOpen(false) : setIsOpen(true)
-        console.log(isOpen)
     } 
 
 

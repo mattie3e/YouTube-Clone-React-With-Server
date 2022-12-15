@@ -9,6 +9,10 @@ const SearchBox = styled(FlexBox)`
     align-items: center;
     width: 46%;
     max-width: 660px;
+
+    @media (max-width: 720px){
+        display: none;
+    } 
 `
 
 const InnerBox = styled(FlexBox)`

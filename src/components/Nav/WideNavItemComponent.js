@@ -5,6 +5,10 @@ import { changeNav } from '../../redux/action'
 import { useRecoilState } from 'recoil'
 import { selectNavState } from '../../recoil/youtubeState'
 
+import styled from 'styled-components'
+import { NavItem, NavIcon, NavText } from '../../styled/Styled'
+
+
 const WideNavItemComponent = (props) => {
     const { data } = props
     const { src, name } = data 
@@ -16,7 +20,8 @@ const WideNavItemComponent = (props) => {
 
     const clickNavEvent = (e) => {
         const target = e.target
-        if (target.className == 'nav_item'){
+
+        if (target.id == 'navItem'){
             const value = target.children[1].innerHTML
 
             setSelectedNav(value)
@@ -28,19 +33,19 @@ const WideNavItemComponent = (props) => {
         <React.Fragment>
         {
             name == selectedNav && 
-            <div className='nav_item selected'>
-                <img className='nav_icon' src={require('../../img/'+src)}/>
-                <div className='nav_item_text'>
+            <NavItem backgroundColor='#272727' id='navItem'>
+                <NavIcon src={require('../../img/'+src)}/>
+                <NavText>
                     {name}
-                </div>
-            </div> ||
+                </NavText>
+            </NavItem> ||
             name != selectedNav && 
-            <div className='nav_item' onClick={clickNavEvent}>
-                <img className='nav_icon' src={require('../../img/'+src)}/>
-                <div className='nav_item_text'>
+            <NavItem onClick={clickNavEvent} id='navItem'>
+                <NavIcon src={require('../../img/'+src)}/>
+                <NavText>
                     {name}
-                </div>
-            </div>
+                </NavText>
+            </NavItem>
         }
         </React.Fragment>
     )   

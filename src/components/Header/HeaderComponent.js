@@ -5,6 +5,7 @@ import SearchComponent from './SearchComponent'
 import UserComponent from './UserComponent'
 
 import styled from 'styled-components'
+import { FlexBox } from '../../styled/Styled'
 
 const HeaderStyle = styled.header`
     box-sizing: border-box;

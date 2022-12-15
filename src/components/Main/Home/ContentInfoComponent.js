@@ -32,6 +32,45 @@ const Title = styled.h1`
     -webkit-box-orient: vertical;
 `
 
+const DetailInfo = styled.h2`
+    font-size: 12px;
+    font-weight: 400;
+    color: #AAAAAA;
+
+    ${(props) => {
+        const hoverBrightness = props.hoverBrightness ? props.hover : ''
+        const hoverWeight = props.hoverWeight ? props.hoverWeight : ''
+        const margin = props.margin ? props.margin : ''
+        const afterContent = props.afterContent ? props.afterContent : ''
+
+        return `
+            &:hover{
+                filter: brightness(${hoverBrightness});
+                font-weight: ${hoverWeight};
+            }
+
+            ${props.afterContent ? 
+                `&:after{
+                content: ${"'" + afterContent + "'"};
+                font-size: 10px;
+                margin: 0px 4px;
+                }`
+                :
+                ''
+            }
+            
+            margin: ${margin}
+        `
+    }}
+    
+`
+
+const Check = styled.img`
+    width: 14px;
+    padding-left: 4px;
+    filter: brightness(0) opacity(60%) invert(1);
+`
+
 
 const ContentInfoComponent = (props) => {
     const {data} = props
@@ -44,18 +83,18 @@ const ContentInfoComponent = (props) => {
                 <Title>{title}</Title>
                 {
                     check_icon ? 
-                    <div className="channel_name_box">
-                        <h2 className="channel_name">{channel_name}</h2>
-                        <img src={require('../../../img/check.svg').default} className="channel_check_img"/>
-                    </div> :
-                    <div className="channel_name_box">
-                        <h2 className="channel_name">{channel_name}</h2>
-                    </div>
+                    <FlexBox>
+                        <DetailInfo margin='0px' hoverBrightness='2' hoverWeight='600'>{channel_name}</DetailInfo>
+                        <Check src={require('../../../img/check.svg').default}/>
+                    </FlexBox> :
+                    <FlexBox>
+                        <DetailInfo margin='0px' hoverBrightness='2' hoverWeight='600'>{channel_name}</DetailInfo>
+                    </FlexBox>
                 }
-                <div className="etc_box">
-                    <div className="view_rate">{view_rate}</div>
-                    <div className="date_info">{date_info}</div>
-                </div>
+                <FlexBox>
+                    <DetailInfo margin='4px 0 0 0' afterContent='•'>{view_rate}</DetailInfo>
+                    <DetailInfo margin='4px 0 0 0'>{date_info}</DetailInfo>
+                </FlexBox>
             </FlexBox>
         </InfoBox>
     )

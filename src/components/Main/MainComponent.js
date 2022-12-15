@@ -10,14 +10,23 @@ import { isOpenState, selectNavState } from '../../recoil/youtubeState'
 import styled from 'styled-components'
 
 const Main = styled.main`
+    padding-top: 56px;
     @media screen and (min-width: 1313px){
         ${(props) => {
-            const padding = props.padding ? props.padding : '56px 0 0 240px'
+            const paddingLeft = props.paddingLeft ? props.paddingLeft : '240px'
 
             return `
-            padding: ${padding}
+                padding-left: ${paddingLeft};
             `
         }}
+    }
+
+    @media screen and (max-width: 1312px){
+        padding-left: 64px;
+    }
+
+    @media screen and (max-width: 800px){
+        padding-left: 0px;
     }
 `
 
@@ -29,12 +38,24 @@ const MainComponent = () => {
     const selectNav = useRecoilValue(selectNavState)
 
     return(
-        <Main className={isOpen ? 'open' : 'close'}>
+        <React.Fragment>
+        {
+            isOpen ?
+            <Main paddingLeft='64px'>
+                {
+                    selectNav == '홈' && <ContentComponent/>  || 
+                    selectNav != '홈' && <TempComponent text={selectNav}/> 
+                }    
+            </Main>
+            :
+            <Main>
             {
                 selectNav == '홈' && <ContentComponent/>  || 
                 selectNav != '홈' && <TempComponent text={selectNav}/> 
             }    
         </Main>
+        }
+        </React.Fragment>
     )
 
 }

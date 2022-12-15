@@ -9,6 +9,75 @@ import { changeIsOpen } from '../../redux/action'
 import { useRecoilValue, useRecoilState } from 'recoil'
 import { isOpenState, subscriptionData } from '../../recoil/youtubeState'
 
+import styled from 'styled-components'
+import { NavItem } from '../../styled/Styled'
+
+
+const WideNav = styled.div` 
+    position: fixed;
+    top: 56px;
+    visibility: visible;
+    box-sizing: border-box;
+    background-color: #0F0F0F;
+    width: 240px; 
+    height: calc(100vh - 56px);
+    padding: 12px 0 12px 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    z-index: 10;
+
+    @media (max-width: 800px){
+        ${(props) => {
+            const display = props.display ? props.display : ''
+    
+            return `
+                display: ${display};
+            `
+        }}
+    }
+
+    ${(props) => {
+        const display = props.display ? props.display : ''
+
+        return `
+            display: ${display};
+        `
+    }}
+`
+
+const BlackBox = styled.div`
+    display: none;
+    z-index: 1000;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 240px;
+    background-color: black;
+    opacity: 0.5;
+    overflow: hidden;
+
+    @media screen and (max-width: 1312px){
+        ${(props) => {
+            const display = props.display ? props.display : 'block'
+    
+            return `
+                display: ${display};
+            `
+        }}
+    }
+`
+
+const Divide = styled.div`
+    width: 100%;
+    height: 1px;
+    margin: 0 8px 0 12px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    background-color:#1B1B1B;
+    border-top: 1px solid #272727;
+    pointer-events: none;
+`
+
 
 const WideNavComponent = () =>{
     const navMenuArr1 = [{'src':'home.svg', 'name':'홈'}, {'src':'shorts.png', 'name':'Shorts'}, {'src':'subscriptions.svg', 'name':'구독'}, {'src':'originals.svg', 'name':'Originals'}, {'src':'youtube_music.png', 'name':'YouTube Music'}]
@@ -32,29 +101,29 @@ const WideNavComponent = () =>{
 
     return(
         <React.Fragment>
-            <nav className={isOpen ? 'wide_nav open' : 'wide_nav close'}>
+            <WideNav display={isOpen ? 'none' : ''}>
                 {
                     navMenuArr1.map((element, index) => {
                     return <WideNavItemComponent key={index} data={element}/>
                     })
                 }
-                <div className='nav_divide'></div>
+                <Divide></Divide>
                 {
                     navMenuArr2.map((element, index) => {
                         return <WideNavItemComponent key={index} data={element}/>
                     })
                 }
-                <div className='nav_divide'></div>
-                <div className='nav_item subscription_text'>
+                <Divide></Divide>
+                <NavItem margin='16px 0 4px 12px'>
                     구독
-                </div>
+                </NavItem>
                 {
                     subscriptions.map((element, index) => {
                         return <WideNavSubscriptionComponent key={index} data={element}/>
                     })
                 }
-            </nav>
-            <div className={isOpen!=undefined ? (isOpen ? 'block_box' : '') : ''} onClick={menuClickEvent}></div>
+            </WideNav>
+            <BlackBox display={isOpen ? 'none' : ''} onClick={menuClickEvent}></BlackBox>
         </React.Fragment>
     )
 

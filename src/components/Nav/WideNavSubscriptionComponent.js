@@ -1,4 +1,12 @@
 import React from 'react'
+import styled from 'styled-components'
+import { NavItem, NavText } from '../../styled/Styled'
+
+
+const SubImg = styled.img`
+    border-radius: 50%; 
+    width: 24px;
+`
 
 
 const WideNavSubscriptionComponent = (props) => {
@@ -6,10 +14,10 @@ const WideNavSubscriptionComponent = (props) => {
     const { src, name } = data
 
     return (
-        <div className='nav_item'>
-            <img className='subscription' src={src}/>
-            <div className="nav_item_text">{name}</div>
-        </div>
+        <NavItem>
+            <SubImg src={src}/>
+            <NavText>{name}</NavText>
+        </NavItem>
     )
 
 }

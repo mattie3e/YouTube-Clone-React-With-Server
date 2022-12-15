@@ -20,7 +20,6 @@ const Content = styled(FlexBox)`
 `
 
 const ExpandContent = styled(FlexBox)`
-    flex-direction: column;
     z-index: 2022;
     position: absolute;
     top: -14px;
@@ -28,16 +27,18 @@ const ExpandContent = styled(FlexBox)`
     height: fit-content;
     background-color: #202020;
     border-radius: 10px;
+
+    @media screen and (min-width: 1800px){
+        width: 440px;
+    }
 `
 
 const OptionBox = styled(FlexBox)`
-    flex-direction: column;
     padding: 10px 10px 0 10px;
     box-sizing: border-box;
 `
 
 const OptionInnerBox = styled(FlexBox)`
-    justify-content: center;
     background-color: #373737;
     width: 100%;
     padding: 6px 10px;
@@ -74,15 +75,15 @@ const ContentComponent = (props) => {
             ||
             resizeState == true && 
             <Content>
-                <ExpandContent onClick={mouseClickEvent}>
+                <ExpandContent flexDirection='column' onClick={mouseClickEvent}>
                     <VideoElementComponent data={element}/> 
                     <ContentInfoComponent data={element}/>
-                    <OptionBox>
-                        <OptionInnerBox>
+                    <OptionBox flexDirection='column'>
+                        <OptionInnerBox justifyContent='center'>
                             <OptionIcon src={require('../../../img/schedule.svg').default}/>
                             나중에 볼 동영상
                         </OptionInnerBox>
-                        <OptionInnerBox>
+                        <OptionInnerBox justifyContent='center'>
                             <OptionIcon src={require('../../../img/add_playlist.svg').default}/>
                             현재 재생목록에 추가
                         </OptionInnerBox>

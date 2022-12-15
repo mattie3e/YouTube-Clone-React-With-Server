@@ -20,6 +20,33 @@ const DurationBox = styled.div`
     border-radius: 4px;
 `
 
+const Duration = styled.div`
+    position: relative;
+    top:-1px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    background-color: transparent;
+    color: white;
+
+    ${(props) => {
+        const hover = props.hover
+
+        if (hover) {
+        return `
+            font-weight: 400;
+            padding: 6px;
+        `
+        }
+    }}
+`
+
+const Thumbnail = styled.img`
+    position: absolute;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+`
+
 
 const VideoElementComponent = (props) => {
     // 렌더링 자주 일어남
@@ -30,9 +57,16 @@ const VideoElementComponent = (props) => {
 
     return (
         <VideoElement>
-            <img src={thumbnail_img} className="video_thumbnail" onMouseOver={setDuration} onMouseOut={setDuration} onClick={clickEvent}/>
+            <Thumbnail src={thumbnail_img} onMouseOver={setDuration} onMouseOut={setDuration} onClick={clickEvent}/>
             <DurationBox>
-                <div className={eachDuration ? 'video_duration' : 'video_duration video_duration_hover'}>{eachDuration ? duration : '계속 마우스 오버하여 재생하기'}</div>
+                {
+                    eachDuration ?
+                    <Duration>{duration}</Duration>
+                    :
+                    <Duration hover='true'>
+                        계속 마우스 오버하여 재생하기
+                    </Duration>
+                }
             </DurationBox>
         </VideoElement>
     )
