@@ -1,13 +1,12 @@
 import React from 'react'
+import styled from 'styled-components'
+import { useSelector } from 'react-redux'
+import { useRecoilValue } from 'recoil'
+
 import ContentComponent from './Home/ContentComponent'
 import TempComponent from './TempComponent'
-
-import { useSelector } from 'react-redux'
-
-import { useRecoilValue } from 'recoil'
 import { isOpenState, selectNavState } from '../../recoil/youtubeState'
 
-import styled from 'styled-components'
 
 const Main = styled.main`
     padding-top: 56px;
@@ -22,7 +21,7 @@ const Main = styled.main`
     }
 
     @media screen and (max-width: 1312px){
-        padding-left: 64px;
+        padding-left: 72px;
     }
 
     @media screen and (max-width: 800px){
@@ -41,7 +40,7 @@ const MainComponent = () => {
         <React.Fragment>
         {
             isOpen ?
-            <Main paddingLeft='64px'>
+            <Main paddingLeft='72px'>
                 {
                     selectNav == '홈' && <ContentComponent/>  || 
                     selectNav != '홈' && <TempComponent text={selectNav}/> 

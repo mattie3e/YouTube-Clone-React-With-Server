@@ -1,65 +1,52 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { changeIsOpen } from '../../redux/action'
+import { useRecoilValue, useRecoilState } from 'recoil'
+import { isOpenState, subscriptionData } from '../../recoil/youtubeState'
+import styled from 'styled-components'
+
 import WideNavItemComponent from './WideNavItemComponent'
 import WideNavSubscriptionComponent from './WideNavSubscriptionComponent'
 import MenuAndLogoComponent from '../Header/MenuAndLogoComponent'
-
-import { useDispatch, useSelector } from 'react-redux'
-import { changeIsOpen } from '../../redux/action'
-
-import { useRecoilValue, useRecoilState } from 'recoil'
-import { isOpenState, subscriptionData } from '../../recoil/youtubeState'
-
-import styled from 'styled-components'
-import { NavItem } from '../../styled/Styled'
+import { NavItem } from '../../styled/YoutubeStyle'
+import { Div } from '../../styled/Styled'
 
 
-const WideNav = styled.div` 
-    position: fixed;
-    top: 56px;
-    visibility: visible;
-    box-sizing: border-box;
-    background-color: #0F0F0F;
-    width: 240px; 
-    height: calc(100vh - 56px);
-    padding: 12px 0 12px 0;
+const WideNav = styled(Div)` 
     overflow-y: scroll;
     overflow-x: hidden;
-    z-index: 10;
+    z-index: 100;
 
-    @media (max-width: 800px){
+    @media (max-width: 1312px){
         ${(props) => {
-            const display = props.display ? props.display : ''
+            const translate = props.translate ? props.translate : '0px'
     
             return `
-                display: ${display};
+                transform: translateX(${translate});
+                transition: all 0.2s;
             `
         }}
     }
 
     ${(props) => {
-        const display = props.display ? props.display : ''
-
+        const translate = props.translate ? props.translate : '0px'
+    
         return `
-            display: ${display};
+            transform: translateX(${translate});
         `
     }}
 `
 
-const BlackBox = styled.div`
+const BlackBox = styled(Div)`
     display: none;
-    z-index: 1000;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    left: 240px;
-    background-color: black;
+    z-index: 1;
     opacity: 0.5;
     overflow: hidden;
 
     @media screen and (max-width: 1312px){
         ${(props) => {
-            const display = props.display ? props.display : 'block'
-    
+            const display = props.display ? props.display : ''
+
             return `
                 display: ${display};
             `
@@ -67,15 +54,8 @@ const BlackBox = styled.div`
     }
 `
 
-const Divide = styled.div`
-    width: 100%;
-    height: 1px;
-    margin: 0 8px 0 12px;
-    margin-top: 12px;
-    margin-bottom: 12px;
-    background-color:#1B1B1B;
+const Divide = styled(Div)`
     border-top: 1px solid #272727;
-    pointer-events: none;
 `
 
 
@@ -94,6 +74,7 @@ const WideNavComponent = () =>{
     //const isOpen = useSelector(state => state.isOpen)
     //const setIsOpen = () => dispatch(changeIsOpen())
     const [ isOpen, setIsOpen ] = useRecoilState(isOpenState)
+
     const menuClickEvent = () => {
         isOpen ? setIsOpen(false) : setIsOpen(true)
         console.log(isOpen)
@@ -101,19 +82,20 @@ const WideNavComponent = () =>{
 
     return(
         <React.Fragment>
-            <WideNav display={isOpen ? 'none' : ''}>
+            <WideNav position='fixed' boxSizing='border-box' backgroundColor='#0F0F0F' width='240px' height='100vh' padding='0 0 12px 0' translate={isOpen ? '-240px' : '0px'}>
+                <MenuAndLogoComponent location='wideNav'/>
                 {
                     navMenuArr1.map((element, index) => {
                     return <WideNavItemComponent key={index} data={element}/>
                     })
                 }
-                <Divide></Divide>
+                <Divide width='100%' height='1px' margin='12px 8px 12px 12px' backgroundColor='#1B1B1B' pointerEvents='none'></Divide>
                 {
                     navMenuArr2.map((element, index) => {
                         return <WideNavItemComponent key={index} data={element}/>
                     })
                 }
-                <Divide></Divide>
+                <Divide width='100%' height='1px' margin='12px 8px 12px 12px' backgroundColor='#1B1B1B' pointerEvents='none'></Divide>
                 <NavItem margin='16px 0 4px 12px'>
                     구독
                 </NavItem>
@@ -123,7 +105,7 @@ const WideNavComponent = () =>{
                     })
                 }
             </WideNav>
-            <BlackBox display={isOpen ? 'none' : ''} onClick={menuClickEvent}></BlackBox>
+            <BlackBox position='fixed' width='100%' height='100vh' backgroundColor='black' display={isOpen ? 'none' : 'block'} onClick={menuClickEvent}></BlackBox>
         </React.Fragment>
     )
 

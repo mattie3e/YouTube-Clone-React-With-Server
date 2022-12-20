@@ -1,12 +1,11 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { changeNav } from '../../redux/action'
-
-import { useRecoilState } from 'recoil'
-import { selectNavState } from '../../recoil/youtubeState'
-
 import styled from 'styled-components'
-import { NavItem, NavIcon, NavText } from '../../styled/Styled'
+import { useSelector, useDispatch } from 'react-redux'
+import { useRecoilState } from 'recoil'
+
+import { changeNav } from '../../redux/action'
+import { selectNavState } from '../../recoil/youtubeState'
+import { NavItem, YoutubeIcon, WideNavText } from '../../styled/YoutubeStyle'
 
 
 const WideNavItemComponent = (props) => {
@@ -34,17 +33,17 @@ const WideNavItemComponent = (props) => {
         {
             name == selectedNav && 
             <NavItem backgroundColor='#272727' id='navItem'>
-                <NavIcon src={require('../../img/'+src)}/>
-                <NavText>
+                <YoutubeIcon src={require('../../img/'+src)}/>
+                <WideNavText>
                     {name}
-                </NavText>
+                </WideNavText>
             </NavItem> ||
             name != selectedNav && 
             <NavItem onClick={clickNavEvent} id='navItem'>
-                <NavIcon src={require('../../img/'+src)}/>
-                <NavText>
+                <YoutubeIcon src={require('../../img/'+src)}/>
+                <WideNavText>
                     {name}
-                </NavText>
+                </WideNavText>
             </NavItem>
         }
         </React.Fragment>

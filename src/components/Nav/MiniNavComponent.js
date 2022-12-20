@@ -1,46 +1,34 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { changeNav } from '../../redux/action'
-
-import { useSetRecoilState } from 'recoil'
-import { selectNavState } from '../../recoil/youtubeState'
-
 import styled from 'styled-components'
-import { FlexBox, NavIcon } from '../../styled/Styled'
+import { useDispatch } from 'react-redux'
+import { useSetRecoilState } from 'recoil'
 
-const MiniNav = styled.div`
+import { changeNav } from '../../redux/action'
+import { selectNavState } from '../../recoil/youtubeState'
+import { YoutubeIcon } from '../../styled/YoutubeStyle'
+import { Div, FlexDiv } from '../../styled/Styled'
+
+const MiniNav = styled(Div)`
     box-sizing: border-box;
     position: fixed;
-    background-color: #0F0F0F;
-    width: 64px;
-    height: 100vh;
-    padding: 60px 0 4px;
 
     @media (max-width: 800px){
         display: none;
     }
 `
 
-const MiniNavItem = styled(FlexBox)`
-    flex-direction: column;
-    align-items: center;
-    padding: 16px 0 14px 0;
-    margin: 0px;
-    font-size: 10px;
-    border-radius: 10px;
-
+const MiniNavItem = styled(FlexDiv)`
     &:hover{
         background-color: #272727;
     }
 `
 
-const IconName = styled.div`
+const IconName = styled(Div)`
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 100%;
     text-align: center;
-    color: white;
+    pointer-events: none;
 `
 
 const MiniNavComponent = () =>{
@@ -52,7 +40,7 @@ const MiniNavComponent = () =>{
 
     const clickNavEvent = (e) => {
         const target = e.target
-        if (target.className == 'nav_item'){
+        if (target.id == 'navItem'){
             const value = target.children[1].innerHTML
 
             setSelectNav(value)
@@ -60,14 +48,15 @@ const MiniNavComponent = () =>{
     }
 
     return(
-        <MiniNav>
+        <MiniNav backgroundColor='#0F0F0F' width='72px' height='100vh' padding='60px 4px 0 4px'>
             {
                 navMenuArr.map((element, index) => {
                     return(
                         <React.Fragment>
-                            <MiniNavItem key={index} onClick={clickNavEvent}>
-                                <NavIcon src={require('../../img/' + element.src)}/>
-                                <IconName>{element.name}</IconName>
+                            <MiniNavItem id='navItem' align='column-center' padding='16px 0 14px 0' margin='0px' fontSize='10px' borderRadius='10px'
+                            key={index} onClick={clickNavEvent}>
+                                <YoutubeIcon width='24px' margin='0 0 6px' src={require('../../img/' + element.src)}/>
+                                <IconName fontSize='10px' width='100%' color='white'>{element.name}</IconName>
                             </MiniNavItem>
                         </React.Fragment>
                     )
@@ -75,7 +64,6 @@ const MiniNavComponent = () =>{
             }
         </MiniNav>
     )
-
 }
 
 

@@ -1,22 +1,14 @@
 import React from 'react'
-import { useDispatch } from 'react-redux' // state 가져오는 명령어
-import { changeIsOpen } from "../../redux/action"
-
-import { useRecoilState } from 'recoil'
-import { isOpenState } from '../../recoil/youtubeState'
-
 import styled from 'styled-components'
-import { BasicButton, FlexBox, BtnImg } from '../../styled/Styled'
+import { useDispatch } from 'react-redux' // state 가져오는 명령어
+import { useSetRecoilState } from 'recoil'
 
-const MenuBox = styled.div`
-    width: 40px;
-`
+import { changeIsOpen } from "../../redux/action"
+import { isOpenState } from '../../recoil/youtubeState'
+import { Button, Div, Span, FlexDiv, Img } from '../../styled/Styled'
 
-const MenuBtn = styled(BasicButton)`
-    margin-top: 10px;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
+
+const MenuBtn = styled(Button)`
     transition: all 0.3s ease-out;
 
     &:active{  
@@ -24,65 +16,44 @@ const MenuBtn = styled(BasicButton)`
     }
 `
 
-const LogoBox = styled.div`
-    box-sizing: border-box;
-    position: relative;
-    bottom: -2px;
-    padding: 18px 14px 18px 16px;
 
-    &:hover{
-        cursor: pointer;
-    }
-`
-
-const Img = styled(BtnImg)`
-    top: 2px;
-    width: 18px;
-    height: 20px;
-`
-
-const Span = styled.span`
-    color: #aaa;
-    font-size: 10px;
-    position: relative;
-    bottom: 20px;
-    right: -2px;
-`
-
-const LogoImg = styled.img`
-    width: 97px;
-    height: fit-content;
-`
-
-const MenuAndLogoComponent = () => {
-    const logoClickEvent = () =>{
-        document.location.reload()
-    }
-    
+const MenuAndLogoComponent = (props) => {
     //const dispatch = useDispatch()
     //const menuClickEvent = () => dispatch(changeIsOpen())
 
-    const [ isOpen, setIsOpen ] = useRecoilState(isOpenState)
+    const { location } = props
+    const setIsOpen = useSetRecoilState(isOpenState)
+    
     const menuClickEvent = () => {
-        isOpen ? setIsOpen(false) : setIsOpen(true)
+        console.log(location)
+        if (location == 'Header'){
+            setIsOpen(false)  
+        }
+        else if (location == 'wideNav'){
+            setIsOpen(true)
+        }
     } 
+
+    const logoClickEvent = () =>{
+        document.location.reload()
+    }
 
 
     return(
         <React.Fragment>
-            <FlexBox>
-                <MenuBox>
-                    <MenuBtn onClick={menuClickEvent}>
-                        <Img src={require('../../img/menu.png')}/> 
+            <FlexDiv>
+                <Div width='40px' padding='0 0 0 16px'>
+                    <MenuBtn margin='10px 0 0 0' borderRadius='50%' width='40px' height='40px' onClick={menuClickEvent}>
+                        <Img position='relative' top='-2px' right='-4px' width='18px' height='20px' src={require('../../img/menu.png')}/> 
                     </MenuBtn>
-                </MenuBox>
-                <LogoBox>
-                    <LogoImg src={require('../../img/YouTube_logo.png')} onClick={logoClickEvent}/>
-                    <Span>
+                </Div>
+                <Div box-sizing='border-box' position='relative' bottom='-2px' hoverCursot='pointer' padding='16px 14px 18px 16px'>
+                    <Img width='97px' src={require('../../img/YouTube_logo.png')} onClick={logoClickEvent}/>
+                    <Span position='relative' bottom='30px' right='-97px' color='#aaa' fontSize='10px'>
                         KR
                     </Span>
-                </LogoBox>
-            </FlexBox>
+                </Div>
+            </FlexDiv>
         </React.Fragment>
     )
 

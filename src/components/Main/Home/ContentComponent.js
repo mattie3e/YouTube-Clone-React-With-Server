@@ -1,21 +1,11 @@
 import React from 'react'
-import EachContent from './EachContent'
-
-//import { useSelector } from 'react-redux'
-
-import { useRecoilValue } from 'recoil'
-import { contentData } from '../../../recoil/youtubeState'
-
 import styled from 'styled-components'
+import { useSelector } from 'react-redux'
+import { useRecoilValue } from 'recoil'
 
-const ContentsBox = styled.div`
-    display: flex;
-    justify-content: center;
-    flex-flow: row wrap;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top:24px;
-`
+import EachContent from './EachContent'
+import { contentData } from '../../../recoil/youtubeState'
+import { FlexDiv } from '../../../styled/Styled'
 
 
 const ContentComponent = () => {
@@ -25,7 +15,7 @@ const ContentComponent = () => {
     const contents = useRecoilValue(contentData)
 
     return (
-        <ContentsBox>
+        <FlexDiv align='row-center' FlexWrap='wrap' margin='24px 20px 0 20px'>
             {
                 contents.map((element) =>{
                     return(
@@ -33,7 +23,7 @@ const ContentComponent = () => {
                     )
                 })
             }
-        </ContentsBox>
+        </FlexDiv>
     )
 }
 

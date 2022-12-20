@@ -3,55 +3,24 @@ import VideoElementComponent from './VideoElementComponent'
 import ContentInfoComponent from './ContentInfoComponent'
 
 import styled from 'styled-components'
-import { FlexBox } from '../../../styled/Styled'
+import { FlexDiv } from '../../../styled/Styled'
+import { YoutubeIcon } from '../../../styled/YoutubeStyle'
 
-const Content = styled(FlexBox)`
-    position: relative;
+
+const Content = styled(FlexDiv)`
     flex-flow: column wrap;
     flex: 1 1 20%;
     color: white;
-    font-size: 14px;
-    margin-left: 8px;
-    margin-right: 8px;
-    margin-bottom: 40px;
     min-width: 240px;
     max-width: 360px;
-    cursor: pointer;
 `
 
-const ExpandContent = styled(FlexBox)`
-    z-index: 2022;
-    position: absolute;
-    top: -14px;
-    width: 360px;
-    height: fit-content;
-    background-color: #202020;
-    border-radius: 10px;
+const ExpandContent = styled(FlexDiv)`
+    z-index: 3;
 
     @media screen and (min-width: 1800px){
         width: 440px;
     }
-`
-
-const OptionBox = styled(FlexBox)`
-    padding: 10px 10px 0 10px;
-    box-sizing: border-box;
-`
-
-const OptionInnerBox = styled(FlexBox)`
-    background-color: #373737;
-    width: 100%;
-    padding: 6px 10px;
-    border-radius: 30px;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-`
-
-const OptionIcon = styled.img`
-    filter: brightness(0) invert(1);
-    width: 24px;
-    height: fit-content;
-    margin-right: 6px;
 `
 
 
@@ -68,26 +37,26 @@ const ContentComponent = (props) => {
         <React.Fragment>
         {
             resizeState == false && 
-            <Content>
+            <Content cursor='pointer' position='relative' font-size='14px' margin='0 8px 40px 8px'>
                 <VideoElementComponent data={element} clickEvent={mouseClickEvent}/> 
                 <ContentInfoComponent data={element}/>
             </Content>
             ||
             resizeState == true && 
             <Content>
-                <ExpandContent flexDirection='column' onClick={mouseClickEvent}>
-                    <VideoElementComponent data={element}/> 
+                <ExpandContent flexDirection='column' position='absolute' width='360px' backgroundColor='#202020' borderRadius='10px' onClick={mouseClickEvent}>
+                    <VideoElementComponent data={element} resizePadding='10px 10px 0 0'/> 
                     <ContentInfoComponent data={element}/>
-                    <OptionBox flexDirection='column'>
-                        <OptionInnerBox justifyContent='center'>
-                            <OptionIcon src={require('../../../img/schedule.svg').default}/>
+                    <FlexDiv padding='10px 10px 0 10px' boxSizing='border-box' flexDirection='column'>
+                        <FlexDiv align='row-center' backgroundColor='#373737' width='100%' padding='6px 10px' borderRadius='30px' margin='0 0 10px 0' boxSizing='border-box' color='white' fontSize='14px'>
+                            <YoutubeIcon width='24px' margin='0 6px 0 0' src={require('../../../img/schedule.svg').default}/>
                             나중에 볼 동영상
-                        </OptionInnerBox>
-                        <OptionInnerBox justifyContent='center'>
-                            <OptionIcon src={require('../../../img/add_playlist.svg').default}/>
+                        </FlexDiv>
+                        <FlexDiv align='row-center' backgroundColor='#373737' width='100%' padding='6px 10px' borderRadius='30px' margin='0 0 10px 0' boxSizing='border-box' color='white' fontSize='14px'>
+                            <YoutubeIcon width='24px' margin='0 6px 0 0' src={require('../../../img/add_playlist.svg').default}/>
                             현재 재생목록에 추가
-                        </OptionInnerBox>
-                    </OptionBox>
+                        </FlexDiv>
+                    </FlexDiv>
                 </ExpandContent>
             </Content> 
         }
