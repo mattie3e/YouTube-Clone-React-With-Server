@@ -3,7 +3,6 @@ import { createStore } from "redux"
 const initState = {
     isOpen: true,
     selectNav: '홈',
-    // 백엔드 데이터 가져오기
     contents: [
         {"title":"역시...곤란한가요? 고양이에게 『삐약』소리를 들으면?", "channel_name":"미야옹철의 냥냥펀치", "channel_img":"https://yt3.ggpht.com/Vo0XVzwybhkBZxDl23mINuZmYna7bs37GhKbwxFP-7zCNbDTgSQxQ84UQikP7qP4v9eCADteulc=s68-c-k-c0x00ffffff-no-rj", "duration":"13:33", "view_rate":"22만회", "date_info":"10개월 전", "thumbnail_img":"https://i.ytimg.com/vi/scycspFJw58/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&amp;rs=AOn4CLDkPIgKag5cFVKuaD_2zIzGatHbYQ", "check_icon":true},
         {"title":"이자 5%? 사상 최대 돈이 몰린 은행 예금", "channel_name":"슈카월드", "channel_img":"https://yt3.ggpht.com/ytc/AKedOLQaiBQGZkfMmM4XqsvWYRZUjUOk1cqZ_13vWIPe=s68-c-k-c0x00ffffff-no-rj", "duration":"31:05", "view_rate":"81만회", "date_info":"6일 전", "thumbnail_img":"https://i.ytimg.com/vi/oO32HQhJbuU/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBy7oABdnMxNz2t7_7bj1ePewEJaA", "check_icon":false},
