@@ -13,6 +13,10 @@ const SearchBox = styled(FlexDiv)`
 
 const InputTag = styled(Input)`
     outline: none;
+
+    &:focus{
+        border: none;
+    }
 `
 
 const KeyboardImg = styled(Img)`
@@ -42,30 +46,27 @@ const SearchComponent = () => {
                 hiddenIcon ? 
                 <FlexDiv border='1px solid #313131' padding='0 6px' color='white' width='100%' height='38px' fontSize='16px' backgroundColor='#0F0F0F' borderRadius='40px 0 0 40px' margin='0 0 0 40px'>
                     <Img display='none' position='relative' right='22px' width='20px' src={require('../../img/search.svg').default}/>
-                    <InputTag fontSize='16px' width='100%' height='38px' padding='0 6px' borderRadius='20px' color='white' backgroundColor='#0F0F0F'
+                    <InputTag fontSize='16px' width='100%' height='36px' padding='0 6px' border='none' borderRadius='20px' color='white' backgroundColor='#0F0F0F'
                     onFocus={inputFocusEvent} onBlur={inputFocusEvent} placeholder='검색'/>
-                    <Button padding='0' position='relative' right='2px' top='2px'>
-                        <KeyboardImg src={require('../../img/keyboard.png')}/>
-                    </Button>
                 </FlexDiv>
                 :
                 // 클릭했을 때
                 <FlexDiv border='1px solid #1C62B9' padding='0 6px 0 40px' color='white' width='100%' height='38px' fontSize='16px' backgroundColor='#0F0F0F' borderRadius='40px 0 0 40px'>
-                    <Img src={require('../../img/search.svg').default}/>
-                    <InputTag fontSize='16px' width='100%' height='38px' padding='0 6px' borderRadius='20px' color='white' backgroundColor='#0F0F0F' 
+                    <Img position='relative' right='24px' top='8px' width='20px' src={require('../../img/search.svg').default}/>
+                    <InputTag fontSize='16px' width='100%' height='36px' padding='0 6px' borderRadius='20px' color='white' backgroundColor='#0F0F0F' 
                     position='relative' right='14px'
                     onFocus={inputFocusEvent} onBlur={inputFocusEvent} placeholder='검색'/>
-                    <Button padding='0' position='relative' right='2px' top='2px'>
+                    <Button padding='0' position='relative' right='2px'>
                         <KeyboardImg width='18px' src={require('../../img/keyboard.png')}/>
                     </Button>
                 </FlexDiv>
             }
 
             <Button backgroundColor='#222222' width='80px' height='40px' border='1px solid #313131' borderRadius='0 40px 40px 0'>
-                <Img width='24px' height='24px' src={require('../../img/search.svg').default}/>
+                <Img width='24px' height='24px' margin='0 0 0 10px' src={require('../../img/search.svg').default}/>
             </Button>
             <MicBtn position='relative' right='-6px' width='50px' height='40px' backgroundColor='#181818' borderRadius='50%'>
-                <Img position='relative' top='2px' width='22px' src={require('../../img/mic.png')}/>
+                <Img position='relative' left='3px' width='22px' src={require('../../img/mic.png')}/>
             </MicBtn>
         </SearchBox>
     )

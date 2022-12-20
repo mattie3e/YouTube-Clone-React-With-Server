@@ -9,6 +9,20 @@ const InfoBox = styled(FlexDiv)`
     flex: 1 0 36px;
 `
 
+const InfoBoxAfter = styled(InfoBox)`
+    &:after{
+        content: '⋮';
+        position: absolute;
+        right: -3px;
+        top: 4px;
+        font-size: 24px;
+        text-align: center;
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+    }
+`
+
 const Title = styled.h1`
     color: white;
     width: 100%;
@@ -61,30 +75,57 @@ const Check = styled(Img)`
 
 
 const ContentInfoComponent = (props) => {
-    const {data} = props
+    const { data, smallMenu } = props
     const { title, channel_name, channel_img, view_rate, date_info, check_icon } = data
 
     return (
-        <InfoBox width='100%' position='relative' padding='0 24px 0 10px' boxSizing='border-box'>
-            <Img display='inline-block' borderRadius='50%' width='36px' height='36px' margin='12px 12px 0 0' src={channel_img}/>
-            <FlexDiv flexDirection='column'>
-                <Title>{title}</Title>
-                {
-                    check_icon ? 
+        <React.Fragment>
+        {
+            smallMenu 
+            ?
+            <InfoBox width='100%' position='relative' padding='0 24px 0 10px' boxSizing='border-box'>
+                <Img display='inline-block' borderRadius='50%' width='36px' height='36px' margin='12px 12px 0 0' src={channel_img}/>
+                <FlexDiv flexDirection='column'>
+                    <Title>{title}</Title>
+                    {
+                        check_icon ? 
+                        <FlexDiv>
+                            <DetailInfo margin='0px' hoverBrightness='2' hoverWeight='600'>{channel_name}</DetailInfo>
+                            <Check width='14px' padding='0 0 0 4px' src={require('../../../img/check.svg').default}/>
+                        </FlexDiv> :
+                        <FlexDiv>
+                            <DetailInfo margin='0px' hoverBrightness='2' hoverWeight='600'>{channel_name}</DetailInfo>
+                        </FlexDiv>
+                    }
                     <FlexDiv>
-                        <DetailInfo margin='0px' hoverBrightness='2' hoverWeight='600'>{channel_name}</DetailInfo>
-                        <Check width='14px' padding='0 0 0 4px' src={require('../../../img/check.svg').default}/>
-                    </FlexDiv> :
-                    <FlexDiv>
-                        <DetailInfo margin='0px' hoverBrightness='2' hoverWeight='600'>{channel_name}</DetailInfo>
+                        <DetailInfo margin='4px 0 0 0' afterContent='•'>{view_rate}</DetailInfo>
+                        <DetailInfo margin='4px 0 0 0'>{date_info}</DetailInfo>
                     </FlexDiv>
-                }
-                <FlexDiv>
-                    <DetailInfo margin='4px 0 0 0' afterContent='•'>{view_rate}</DetailInfo>
-                    <DetailInfo margin='4px 0 0 0'>{date_info}</DetailInfo>
                 </FlexDiv>
-            </FlexDiv>
-        </InfoBox>
+            </InfoBox>
+            :
+            <InfoBoxAfter width='100%' position='relative' padding='0 24px 0 10px' boxSizing='border-box'>
+                <Img display='inline-block' borderRadius='50%' width='36px' height='36px' margin='12px 12px 0 0' src={channel_img}/>
+                <FlexDiv flexDirection='column'>
+                    <Title>{title}</Title>
+                    {
+                        check_icon ? 
+                        <FlexDiv>
+                            <DetailInfo margin='0px' hoverBrightness='2' hoverWeight='600'>{channel_name}</DetailInfo>
+                            <Check width='14px' padding='0 0 0 4px' src={require('../../../img/check.svg').default}/>
+                        </FlexDiv> :
+                        <FlexDiv>
+                            <DetailInfo margin='0px' hoverBrightness='2' hoverWeight='600'>{channel_name}</DetailInfo>
+                        </FlexDiv>
+                    }
+                    <FlexDiv>
+                        <DetailInfo margin='4px 0 0 0' afterContent='•'>{view_rate}</DetailInfo>
+                        <DetailInfo margin='4px 0 0 0'>{date_info}</DetailInfo>
+                    </FlexDiv>
+                </FlexDiv>
+            </InfoBoxAfter>
+        }
+        </React.Fragment>
     )
 }
 

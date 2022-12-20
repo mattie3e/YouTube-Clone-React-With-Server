@@ -10,7 +10,7 @@ const useVideoPreview = () => {
         else if (e.type == 'mouseout'){
             setPreviewState(true)
         }
-        
+        console.log(previewState)
     }   
 
     return [previewState, mouseOverEvent]
